@@ -35,6 +35,7 @@ contract VoteEscrowReader is Script {
         address tokenAddr = voteEscrow.TOKEN();
         IERC20 token = IERC20(tokenAddr);
         
+        console.log("Token Address:", tokenAddr);
         console.log("Token Symbol:", token.symbol());
         console.log("Token Balance:", token.balanceOf(ERC6551_WALLET));
         console.log("Principal:", escrow.principal);
