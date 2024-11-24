@@ -2,7 +2,7 @@
 pragma solidity 0.8.23;
 
 import "./VoteEscrowReader.s.sol";
-import "@interfaces/IERC6551Account.sol";
+import {IERC6551Executable} from "@erc6551/examples/simple/ERC6551Account.sol";
 
 contract VoteEscrowSimulator is VoteEscrowReader {
     function simulateUnlock() public {
@@ -24,10 +24,11 @@ contract VoteEscrowSimulator is VoteEscrowReader {
         // 4. Print expected gas usage
         uint256 gas = gasleft();
         vm.prank(WALLET_OWNER);
-        IERC6551Account(ERC6551_WALLET).execute(
+        IERC6551Executable(ERC6551_WALLET).execute(
             VOTE_ESCROW,
             0,
-            unlockCall
+            unlockCall,
+            0
         );
         gas = gas - gasleft();
         
